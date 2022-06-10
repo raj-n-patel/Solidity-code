@@ -1,0 +1,21 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract functionModifier{
+    bool public paused;
+    uint public count;
+
+    function setpause (bool _paused) external{
+        paused = _paused;
+    }
+    modifier whenNotpaused(){
+        require(!paused, "paused");
+        _;
+    }
+    function inc() external whenNotpaused {
+        count +=1;
+    }
+    function dec() external whenNotpaused{
+        count -=1;
+    }
+}
